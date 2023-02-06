@@ -5,9 +5,12 @@
     </ul>
     <ul class="nav">
         {{-- <li class="nav-item"><a href="/profile" class="nav-link link-dark px-2">Profile</a></li> --}}
+        @if (!Auth::user())
         <li class="nav-item"><a href="/signin" class="nav-link link-dark px-2">Sign in</a></li>
         <li class="nav-item"><a href="/register" class="nav-link link-dark px-2">Sign up</a></li>
+        @else
         <li class="nav-item"><a href="/signout" class="nav-link link-dark px-2">Sign out</a></li>
+        @endif
         {{-- <li class="nav-item"><a href="/adminpanel" class="nav-link link-dark px-2">Admin Panel</a></li> --}}
     </ul>
   </div>
