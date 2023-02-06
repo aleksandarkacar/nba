@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TeamController::class, 'index']);
-Route::get('/teams/{id}', [TeamController::class, 'show']);
-Route::get('/players/{id}', [PlayerController::class, 'show']);
+Route::get('/', [TeamController::class, 'index'])->middleware('signedin');
+Route::get('/teams/{id}', [TeamController::class, 'show'])->middleware('signedin');
+Route::get('/players/{id}', [PlayerController::class, 'show'])->middleware('signedin');
+Route::get('/signout', [AuthController::class, 'signout']);
+
+Route::get('signin', function (){
+    return view('auth/signin');
+});
+
+Route::get('/register', function (){
+    return view('auth/register');
+});
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/signin', [AuthController::class, 'signin']);
