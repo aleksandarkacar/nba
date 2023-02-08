@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\CommentRecieved;
-use App\Models\Comment;
-use App\Models\Team;
+use App\Models\News;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
-class CommentController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $news = News::all();
+
+        return view('news', compact('news'));
     }
 
     /**
@@ -29,25 +27,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'team_id' => 'exists:teams,id',
-            'content' => 'required|min:10|max:5000'
-        ]);
-
-        $comment = new Comment();
-        $comment->content = $request->content;
-
-        $comment->user_id = Auth::user()->id;
-        $team = Team::find($request->team_id);
-
-        $comment->user()->associate(Auth::user());
-        $comment->team()->associate($team)->save();
-
-        $mailData = $request->only('content');
-        $mailData += ['user_name' => $comment->user->name];
-        Mail::to(Team::find($request->team_id)->email)->send(new CommentRecieved($mailData));
-        
-        return redirect('teams/'. $request->team_id)->with('status', 'Comment Sucessfuly Posted!');
+        //
     }
 
     /**
@@ -58,7 +38,8 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        $team = News::find($id);
+        return view('news', compact('news'));
     }
 
     /**

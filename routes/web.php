@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,10 @@ Route::get('/teams/{id}', [TeamController::class, 'show'])->middleware('signedin
 Route::get('/players/{id}', [PlayerController::class, 'show'])->middleware('signedin');
 Route::get('/signout', [AuthController::class, 'signout']);
 Route::get('/verify/{id}', [AuthController::class, 'verifyemail']);
+Route::get('/news', [NewsController::class, 'index']);
+Route::get('/news{id}', [NewsController::class, 'show']);
+
+//povezi news sa userom associate i news dodati u db
 
 Route::get('signin', function (){
     return view('auth/signin');
