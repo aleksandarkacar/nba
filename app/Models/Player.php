@@ -10,6 +10,6 @@ class Player extends Model
     use HasFactory;
 
     public function team(){
-        $this->belongsTo(Team::class);
+        return $this->belongsTo(Team::class);
     }
 }

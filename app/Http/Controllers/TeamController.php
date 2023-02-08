@@ -39,7 +39,7 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::find($id);
+        $team = Team::with('comments')->find($id);
         $players = Player::where('team_id', $id)->get();
         return view('team', compact('team','players'));
     }

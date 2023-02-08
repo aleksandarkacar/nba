@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'content' => fake()->realText(20),
+            'team_id' => Team::all()->random()->id,
+            'user_id' => User::all()->random()->id,
         ];
     }
 }

@@ -10,6 +10,10 @@ class Team extends Model
     use HasFactory;
 
     public function players(){
-        $this->hasMany(Player::class);
+        return $this->hasMany(Player::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }

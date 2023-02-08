@@ -28,5 +28,6 @@
         
           </div>
 
+    @include('components.comments')
 
 @endsection
