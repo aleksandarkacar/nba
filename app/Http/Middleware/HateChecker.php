@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class LoginChecker
+class HateChecker
 {
+    
     /**
      * Handle an incoming request.
      *
@@ -17,8 +17,12 @@ class LoginChecker
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::check()){
-            return redirect('signin')->with('status', 'User Must be Signed in to view that page');
+        $forbiddenWords = ['hate', 'idiot', 'stupid'];
+        foreach ($forbiddenWords as $hateword)
+        {
+            if (stripos($request->content, $hateword) !== false){
+                return redirect('teams/'. $request->team_id)->with('status', 'Comment contains banned words');
+            }
         }
         return $next($request);
     }

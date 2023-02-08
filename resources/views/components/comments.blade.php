@@ -9,4 +9,13 @@
           </p>
         </div>
       @endforeach
+
+      <form class="container mb-5" action="{{ url('createcomment') }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <input type="hidden" name="team_id" value="{{ $team->id }}">
+            <textarea type="" class="form-control" name="content" placeholder="Comment..." required></textarea>
+          </div>
+        <button type="submit" class="btn btn-primary">Post Comment</button>
+    </form>
   </div>

@@ -41,7 +41,7 @@ class CommentController extends Controller
         $comment->user()->associate(Auth::user());
         $comment->team()->associate($team)->save();
         
-        return redirect('team/'. $request->team_id, with('status', 'Comment Sucessfuly Posted!'));
+        return redirect('teams/'. $request->team_id)->with('status', 'Comment Sucessfuly Posted!');
     }
 
     /**

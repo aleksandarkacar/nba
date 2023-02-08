@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ Route::get('/', [TeamController::class, 'index'])->middleware('signedin');
 Route::get('/teams/{id}', [TeamController::class, 'show'])->middleware('signedin');
 Route::get('/players/{id}', [PlayerController::class, 'show'])->middleware('signedin');
 Route::get('/signout', [AuthController::class, 'signout']);
+Route::get('/verify/{id}', [AuthController::class, 'verifyemail']);
 
 Route::get('signin', function (){
     return view('auth/signin');
@@ -31,3 +33,4 @@ Route::get('/register', function (){
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/signin', [AuthController::class, 'signin']);
+Route::post('createcomment', [CommentController::class, 'store'])->middleware('hatechecker');
