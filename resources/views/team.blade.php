@@ -9,6 +9,7 @@
         <h5>{{ $team->email }}</h5>
         <div class="mb-1 text-muted">{{ $team->address }}</div>
         <p class="mb-auto">{{ $team->city }}</p>
+        <a href="/news/team/{{ $team->name }}" class="btn-default">Show all news relating to team</a>
     </div>
 
     <div class="row mb-2">

@@ -25,6 +25,7 @@ Route::get('/signout', [AuthController::class, 'signout']);
 Route::get('/verify/{id}', [AuthController::class, 'verifyemail']);
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/{id}', [NewsController::class, 'show']);
+Route::get('/news/team/{name}', [NewsController::class, 'filter']);
 
 //povezi news sa userom associate i news dodati u db
 

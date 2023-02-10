@@ -14,8 +14,8 @@
           <strong class="d-inline-block mb-2 text-success">News:</strong>
           <h3 class="mb-0">{{ $new->title }}</h3>
           <h5>{{ $new->content }}</h5>
-          <div class="mb-1 text-muted">{{ $new->user->name }}</div>
-          <p class="mb-auto">{{ $new->user->email }}</p>
+          {{-- <div class="mb-1 text-muted">{{ $new->user->name }}</div> --}}
+          {{-- <p class="mb-auto">{{ $new->user->email }}</p> --}}
           <a href="/news/{{ $new->id }}" class="stretched-link">Go to News</a>
         </div>
       </div>

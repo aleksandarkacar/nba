@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -63,5 +64,15 @@ class NewsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filter($name){
+        $team = Team::where('name', $name)->with('news')->first();
+        $news = News::whereHas('teams', function($q) use ($team) {
+            $q->whereIn('teams.id', [$team->id]);
+        })->paginate(10);
+
+
+        return view('news', compact('news'));
     }
 }
