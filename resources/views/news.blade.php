@@ -4,8 +4,9 @@
 
 @section('content')
 
+<div style="display: flex; justify-content: center;">{{ $news }}</div>
+
 <div class="row mb-2">
-    
 @foreach ($news as $new)
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -15,14 +16,14 @@
           <h5>{{ $new->content }}</h5>
           <div class="mb-1 text-muted">{{ $new->user->name }}</div>
           <p class="mb-auto">{{ $new->user->email }}</p>
-          <a href="/news/{{ $news->id }}" class="stretched-link">Go to News</a>
+          <a href="/news/{{ $new->id }}" class="stretched-link">Go to News</a>
         </div>
       </div>
     </div>
     @endforeach
 
   </div>
-
+  <div style="display: flex; justify-content: center;">{{ $news }}</div>
 
 
 @endsection

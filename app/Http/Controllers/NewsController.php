@@ -14,7 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = News::with('user')->paginate(10);
 
         return view('news', compact('news'));
     }
@@ -38,8 +38,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $team = News::find($id);
-        return view('news', compact('news'));
+        $new = News::find($id);
+        return view('new', compact('new'));
     }
 
     /**
