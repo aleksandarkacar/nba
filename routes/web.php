@@ -25,7 +25,9 @@ Route::get('/signout', [AuthController::class, 'signout']);
 Route::get('/verify/{id}', [AuthController::class, 'verifyemail']);
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/{id}', [NewsController::class, 'show']);
-Route::get('/news/team/{name}', [NewsController::class, 'filter']);
+Route::get('/news/team/{name}', [NewsController::class, 'filter'])->middleware('signedin');
+Route::get('/createnews', [TeamController::class, 'findall']);
+
 
 //povezi news sa userom associate i news dodati u db
 
@@ -40,3 +42,4 @@ Route::get('/register', function (){
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/signin', [AuthController::class, 'signin']);
 Route::post('createcomment', [CommentController::class, 'store'])->middleware('hatechecker');
+Route::post('createnews', [NewsController::class, 'store'])->middleware('signedin');

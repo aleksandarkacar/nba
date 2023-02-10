@@ -3,6 +3,7 @@
     <ul class="nav me-auto">
       <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active">Home</a></li>
       <li class="nav-item"><a href="/news" class="nav-link link-dark px-2">News</a></li>
+      <li class="nav-item"><a href="/createnews" class="nav-link link-dark px-2">CreateNews</a></li>
     </ul>
     <ul class="nav">
         {{-- <li class="nav-item"><a href="/profile" class="nav-link link-dark px-2">Profile</a></li> --}}

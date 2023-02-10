@@ -66,4 +66,11 @@ class TeamController extends Controller
     {
         //
     }
+
+    public function findall()
+    {
+        $teams = Team::all();
+
+        return view('createnews', compact('teams'));
+    }
 }
